@@ -31,7 +31,7 @@ const ForgetPassword = () => {
             }
         }
         else {
-            setError("Adresse e-mail invalide");
+            setError("Invalid email address");
         }
 
     };
