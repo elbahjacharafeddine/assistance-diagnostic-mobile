@@ -9,21 +9,31 @@ const ForgetPassword = () => {
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const { path } = useUserData();
-
+    const isEmailValid = (email) => {
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return emailRegex.test(email);
+    };
     const handleSubmit = async () => {
-        try {
-            const data = {
-                email: email,
-            };
-            const response = await axios.post(`${path}/request_reset_password`, data);
-            if (response.status === 200) {
-                setMessage("Password reset email sent successfully.");
-            } else {
+        if (isEmailValid(email)){
+            try {
+                const data = {
+                    email: email,
+                };
+                const response = await axios.post(`${path}/request_reset_password`, data);
+                if (response.status === 200) {
+                    setMessage("Password reset email sent successfully.");
+                } else {
+                    setError("An error occurred while sending the password reset email.");
+                }
+            }
+            catch (error) {
                 setError("An error occurred while sending the password reset email.");
             }
-        } catch (error) {
-            setError("An error occurred while sending the password reset email.");
         }
+        else {
+            setError("Adresse e-mail invalide");
+        }
+
     };
 
     return (
