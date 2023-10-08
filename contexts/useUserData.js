@@ -43,7 +43,7 @@ export function UserDataProvider({ children }) {
 
   const [diagnostics, setDiagnostics] = useState([])
   const [diagnostic, setDiagnostic] = useState(null)
-  const [path, setPath] = useState("http://192.168.11.104:5000")
+  const [path, setPath] = useState("http://10.0.2.2:5000")
 
   const openModal = () => {
     setModalIsOpen(true);
